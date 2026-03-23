@@ -71,6 +71,16 @@
   }
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
 @layer base {
   * {
     @apply border-border;

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import boostlogo from './BP.png'
+import { motion, AnimatePresence } from "framer-motion";
+import boostlogo from './BP.png';
+
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#mission" },
@@ -11,56 +13,90 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Aktivizohet pak më herët për tranzicion më të butë
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" style={{paddingTop:20, paddingBottom:20}}>
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        scrolled 
+        ? "py-4 bg-black/60 backdrop-blur-[20px] backdrop-saturate-[180%] border-b border-white/10 shadow-2xl" 
+        : "py-8 bg-black/10 backdrop-blur-[2px]" // Kjo heq shkëlqimin e bardhë të body-t
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#home" className="font-heading text-xl font-bold tracking-tight">
-          <img src={boostlogo} style={{width:100, }}/>
+        {/* LOGO - Overflow visible që të mos pritet lart */}
+        <a href="#home" className="relative z-[101] flex items-center h-full overflow-visible transition-transform duration-300 hover:scale-105">
+          <img 
+            src={boostlogo} 
+            alt="Boost Logo" 
+            className="w-[110px] md:w-[130px] object-contain drop-shadow-[0_0_15px_rgba(209,255,189,0.2)]" 
+          />
         </a>
 
-        {/* Desktop */}
-        <ul className="hidden md:flex items-center gap-8">
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-[11px] uppercase tracking-[0.3em] font-bold text-white/80 hover:text-[#D1FFBD] transition-all duration-300 relative group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#D1FFBD] transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile toggle */}
+        {/* Mobile Toggle Button */}
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden relative z-[101] p-2 text-white transition-colors hover:text-[#D1FFBD]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-background border-b border-border">
-          <ul className="flex flex-col px-6 pb-4 gap-3">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-                  onClick={() => setOpen(false)}
+      {/* Mobile Menu Overlay (iOS Style) */}
+      <AnimatePresence>
+        {open && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 w-full h-screen bg-black/95 backdrop-blur-[30px] z-[100] flex flex-col items-center justify-center"
+          >
+            <ul className="flex flex-col items-center gap-10">
+              {navLinks.map((link, i) => (
+                <motion.li 
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
                 >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                  <a
+                    href={link.href}
+                    className="text-3xl font-black tracking-tighter text-white hover:text-[#D1FFBD] transition-colors uppercase"
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
