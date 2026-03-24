@@ -40,7 +40,7 @@ const Navbar = () => {
           <img
             src="/brand-wordmark.svg"
             alt="Boost Solution Processing LLC"
-            className="h-8 w-auto max-w-[220px] shrink-0 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] sm:h-9 sm:max-w-[240px] md:h-11 md:max-w-[320px] lg:h-12 lg:max-w-[360px] xl:h-[3.35rem] xl:max-w-[400px]"
+            className="h-10 w-auto max-w-[calc(100vw-6.5rem)] object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] sm:h-10 sm:max-w-[260px] md:h-11 md:max-w-[320px] lg:h-12 lg:max-w-[360px] xl:h-[3.35rem] xl:max-w-[400px]"
           />
         </a>
 
