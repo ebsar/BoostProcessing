@@ -31,21 +31,16 @@ const Navbar = () => {
           : "py-8 bg-black/10 backdrop-blur-[2px]"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         <a
           href="#home"
-          className="relative z-[101] flex items-center h-full overflow-visible transition-transform duration-300 hover:scale-[1.02]"
+          className="relative z-[101] flex items-center overflow-visible transition-transform duration-300 hover:scale-[1.02]"
           aria-label="Boost Solution Processing LLC"
         >
           <img
-            src="/brand-mark.svg"
-            alt="Boost Solution Processing LLC"
-            className="w-11 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] md:hidden"
-          />
-          <img
             src="/brand-wordmark.svg"
             alt="Boost Solution Processing LLC"
-            className="hidden h-10 w-auto shrink-0 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] md:block xl:h-11"
+            className="h-8 w-auto max-w-[220px] shrink-0 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] sm:h-9 sm:max-w-[240px] md:h-11 md:max-w-[320px] lg:h-12 lg:max-w-[360px] xl:h-[3.35rem] xl:max-w-[400px]"
           />
         </a>
 
