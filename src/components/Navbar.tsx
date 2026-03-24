@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import boostlogo from './BP.png';
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -17,32 +16,39 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Aktivizohet pak më herët për tranzicion më të butë
       setScrolled(window.scrollY > 10);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled 
-        ? "py-4 bg-black/60 backdrop-blur-[20px] backdrop-saturate-[180%] border-b border-white/10 shadow-2xl" 
-        : "py-8 bg-black/10 backdrop-blur-[2px]" // Kjo heq shkëlqimin e bardhë të body-t
+        scrolled
+          ? "py-4 bg-black/60 backdrop-blur-[20px] backdrop-saturate-[180%] border-b border-white/10 shadow-2xl"
+          : "py-8 bg-black/10 backdrop-blur-[2px]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        {/* LOGO - Overflow visible që të mos pritet lart */}
-        <a href="#home" className="relative z-[101] flex items-center h-full overflow-visible transition-transform duration-300 hover:scale-105">
-          <img 
-            src={boostlogo} 
-            alt="Boost Logo" 
-            className="w-[110px] md:w-[130px] object-contain drop-shadow-[0_0_15px_rgba(209,255,189,0.2)]" 
+        <a
+          href="#home"
+          className="relative z-[101] flex items-center h-full overflow-visible transition-transform duration-300 hover:scale-[1.02]"
+          aria-label="Boost Solution Processing LLC"
+        >
+          <img
+            src="/brand-mark.svg"
+            alt="Boost Solution Processing LLC"
+            className="w-11 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] md:hidden"
+          />
+          <img
+            src="/brand-wordmark.svg"
+            alt="Boost Solution Processing LLC"
+            className="hidden h-10 w-auto shrink-0 object-contain drop-shadow-[0_0_14px_rgba(209,255,189,0.12)] md:block xl:h-11"
           />
         </a>
 
-        {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -57,7 +63,6 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Mobile Toggle Button */}
         <button
           className="md:hidden relative z-[101] p-2 text-white transition-colors hover:text-[#D1FFBD]"
           onClick={() => setOpen(!open)}
@@ -67,10 +72,9 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay (iOS Style) */}
       <AnimatePresence>
         {open && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -78,7 +82,7 @@ const Navbar = () => {
           >
             <ul className="flex flex-col items-center gap-10">
               {navLinks.map((link, i) => (
-                <motion.li 
+                <motion.li
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

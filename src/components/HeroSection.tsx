@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 import missionImg from "@/assets/mission-img.jpg";
 import merchantImg from "@/assets/merchant-img.jpg";
@@ -45,7 +45,7 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const liquidTextClass = "bg-gradient-to-br from-white via-white/90 to-white/40 bg-clip-text text-transparent transform-gpu";
+const liquidTextClass = "bg-gradient-to-br from-white via-white/95 to-white/60 bg-clip-text text-transparent transform-gpu";
 
 const AnimatedLetters = ({ text, className, trigger }) => {
   const sentence = {
@@ -60,13 +60,30 @@ const AnimatedLetters = ({ text, className, trigger }) => {
   return (
     <motion.span variants={sentence} initial="hidden" animate={trigger ? "visible" : "hidden"} className={className}>
       {text.split("").map((char, i) => (
-        <motion.span key={i} variants={letter} className="inline-block origin-bottom text-white">
+        <motion.span key={i} variants={letter} className={`inline-block origin-bottom ${className || "text-white"}`}>
           {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
     </motion.span>
   );
 };
+
+const FloatingOrb = ({ className, xRange, yRange, duration = 12 }) => (
+  <motion.div
+    animate={{
+      x: xRange,
+      y: yRange,
+      scale: [1, 1.08, 0.96, 1],
+    }}
+    transition={{
+      duration,
+      repeat: Infinity,
+      repeatType: "mirror",
+      ease: "easeInOut",
+    }}
+    className={className}
+  />
+);
 
 const services = [
   {
@@ -92,6 +109,27 @@ const services = [
   },
 ];
 
+const serviceAccentClasses = [
+  {
+    title: "text-[#D1FFBD]",
+    subtitle: "text-[#D1FFBD]",
+    overlay: "bg-gradient-to-tr from-black/50 via-transparent to-[#D1FFBD]/12",
+    panel: "border-white/10 bg-black/35",
+  },
+  {
+    title: "text-[#D1FFBD]",
+    subtitle: "text-[#D1FFBD]",
+    overlay: "bg-gradient-to-tr from-black/50 via-transparent to-[#D1FFBD]/12",
+    panel: "border-white/10 bg-black/35",
+  },
+  {
+    title: "text-[#D1FFBD]",
+    subtitle: "text-[#D1FFBD]",
+    overlay: "bg-gradient-to-tr from-black/50 via-transparent to-[#D1FFBD]/12",
+    panel: "border-white/10 bg-black/35",
+  },
+];
+
 export default function LandingPage() {
   const missionRef = useRef(null);
   const [isReady, setIsReady] = useState(false); 
@@ -99,14 +137,26 @@ export default function LandingPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", processing: "", bestTime: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const heroRotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [10, -10]), { stiffness: 120, damping: 20 });
+  const heroRotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-12, 12]), { stiffness: 120, damping: 20 });
+  const heroLayerX = useSpring(useTransform(pointerX, [-0.5, 0.5], [-30, 30]), { stiffness: 90, damping: 18 });
+  const heroLayerY = useSpring(useTransform(pointerY, [-0.5, 0.5], [-24, 24]), { stiffness: 90, damping: 18 });
+  const heroOrbX = useSpring(useTransform(pointerX, [-0.5, 0.5], [-45, 45]), { stiffness: 80, damping: 18 });
+  const heroOrbY = useSpring(useTransform(pointerY, [-0.5, 0.5], [-35, 35]), { stiffness: 80, damping: 18 });
 
   useEffect(() => {
     const timer = setTimeout(() => setIsReady(true), 1500);
     const handleMouseMove = (e) => {
-        if (window.innerWidth > 768) setMousePos({ x: e.clientX, y: e.clientY });
+        if (window.innerWidth > 768) {
+          setMousePos({ x: e.clientX, y: e.clientY });
+          pointerX.set(e.clientX / window.innerWidth - 0.5);
+          pointerY.set(e.clientY / window.innerHeight - 0.5);
+        }
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
@@ -133,7 +183,7 @@ export default function LandingPage() {
   const { scrollYProgress: missionScrollY } = useScroll({ target: missionRef, offset: ["start end", "end start"] });
   const yImageParallax = useTransform(missionScrollY, [0, 1], ["-10%", "10%"]);
 
-  const liquidGlassClass = "relative overflow-hidden bg-[#D1FFBD]/10 border border-[#D1FFBD]/30 text-[#D1FFBD] hover:bg-[#D1FFBD]/20 transition-all duration-300 transform-gpu";
+  const liquidGlassClass = "relative overflow-hidden border border-[#D1FFBD]/30 bg-[#D1FFBD]/10 text-[#D1FFBD] shadow-[0_14px_40px_rgba(209,255,189,0.08)] hover:bg-[#D1FFBD]/20 transition-all duration-300 transform-gpu";
   const iosGlassCard = "backdrop-blur-md bg-white/[0.03] border border-white/10 transform-gpu will-change-transform";
   const inputStyle = "w-full px-5 py-4 bg-black/40 border border-white/10 rounded-2xl focus:ring-1 focus:ring-[#D1FFBD]/50 outline-none text-white transition-all";
 
@@ -151,9 +201,12 @@ export default function LandingPage() {
         {!isReady && <LoadingScreen key="loading" />}
       </AnimatePresence>
 
-      <div className={`bg-[#050505] min-h-screen text-white font-sans selection:bg-[#D1FFBD] selection:text-black transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`relative bg-[#050505] min-h-screen text-white font-sans selection:bg-[#D1FFBD] selection:text-black transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="pointer-events-none fixed inset-0 overflow-hidden">
+          <div className="absolute right-[-4rem] top-[22%] h-80 w-80 rounded-full bg-[#D1FFBD]/10 blur-[140px]" />
+        </div>
         
-        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden [perspective:1600px]">
           <div className="absolute inset-0 z-0">
             <motion.img 
               initial={{ scale: 1.1, opacity: 0 }} 
@@ -165,19 +218,86 @@ export default function LandingPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
           </div>
-          <div className="relative z-10 text-center px-6 will-change-transform">
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-[#D1FFBD] text-[10px] font-bold block mb-6 tracking-[0.4em] uppercase">Future of Digital Payments</motion.span>
-            
-            <h1 className="flex flex-col gap-1 font-heading text-4xl md:text-8xl lg:text-9xl font-black leading-none tracking-tighter uppercase">
+          <motion.div
+            style={{ x: heroOrbX, y: heroOrbY }}
+            className="pointer-events-none absolute inset-0 z-[1] hidden md:block opacity-70"
+          >
+            <FloatingOrb
+              className="absolute left-[12%] top-[20%] h-28 w-28 rounded-full border border-[#D1FFBD]/15 bg-[#D1FFBD]/[0.08] blur-2xl"
+              xRange={[0, 18, -10]}
+              yRange={[0, -22, 8]}
+              duration={14}
+            />
+            <FloatingOrb
+              className="absolute right-[14%] top-[24%] h-20 w-20 rounded-full border border-white/10 bg-white/8 blur-xl"
+              xRange={[0, -14, 10]}
+              yRange={[0, 18, -10]}
+              duration={11}
+            />
+            <FloatingOrb
+              className="absolute bottom-[26%] right-[20%] h-36 w-36 rounded-full bg-[#D1FFBD]/8 blur-[100px]"
+              xRange={[0, 24, -18]}
+              yRange={[0, -20, 12]}
+              duration={16}
+            />
+          </motion.div>
+          <motion.div
+            style={{ x: heroLayerX, y: heroLayerY }}
+            className="pointer-events-none absolute inset-0 z-[2] hidden md:block opacity-60"
+          >
+            <div className="absolute left-[10%] top-[16%] h-[240px] w-[240px] rounded-full border border-white/6" />
+            <div className="absolute right-[10%] top-[20%] h-[160px] w-[160px] rounded-[2rem] border border-[#D1FFBD]/10 bg-white/[0.02] backdrop-blur-sm rotate-12" />
+          </motion.div>
+          <motion.div
+            style={{ rotateX: heroRotateX, rotateY: heroRotateY, transformStyle: "preserve-3d" }}
+            className="relative z-10 mx-auto max-w-5xl px-6 text-center will-change-transform"
+          >
+            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[#D1FFBD] text-[10px] font-bold mb-6 tracking-[0.4em] uppercase backdrop-blur-md">Future of Digital Payments</motion.span>
+
+            <motion.h1
+              style={{ transform: "translateZ(110px)" }}
+              className="flex flex-col gap-2 font-heading text-[2.2rem] md:text-6xl lg:text-7xl font-black leading-[0.92] tracking-tight uppercase"
+            >
               <div className={liquidTextClass}><AnimatedLetters trigger={isReady} text="EASY & SMART" /></div>
               <div className={liquidTextClass}><AnimatedLetters trigger={isReady} text="MERCHANT" /></div>
               <div className="text-[#D1FFBD]"><AnimatedLetters trigger={isReady} text="SOLUTIONS" /></div>
-            </h1>
+            </motion.h1>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="mt-14">
-              <a href="#contact" className={`inline-block px-12 py-5 rounded-full font-bold text-sm tracking-widest ${liquidGlassClass}`}>GET IN TOUCH</a>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              style={{ transform: "translateZ(80px)" }}
+              className="mx-auto mt-6 max-w-xl text-sm leading-6 text-white/70 md:text-[15px]"
+            >
+              Advanced payment experiences with a sharper visual identity, layered depth, and a more premium digital presence.
+            </motion.p>
+
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="mt-10 flex flex-col items-center gap-6">
+              <a href="#contact" className={`inline-block px-10 py-4 rounded-full font-bold text-xs tracking-[0.28em] ${liquidGlassClass}`}>GET IN TOUCH</a>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.8 }}
+                style={{ transform: "translateZ(140px)" }}
+                className={`hidden md:grid grid-cols-3 gap-3 rounded-[1.5rem] p-3 ${iosGlassCard}`}
+              >
+                <div className="min-w-[120px] rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-left">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Approval</p>
+                  <p className="mt-1.5 text-xl font-black text-white">15 Min</p>
+                </div>
+                <div className="min-w-[120px] rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-left">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Savings</p>
+                  <p className="mt-1.5 text-xl font-black text-[#D1FFBD]">0 Fee Plan</p>
+                </div>
+                <div className="min-w-[120px] rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-left">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Support</p>
+                  <p className="mt-1.5 text-xl font-black text-white">24/7</p>
+                </div>
+              </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
         <section ref={missionRef} id="mission" className="relative py-20 px-6">
@@ -198,18 +318,35 @@ export default function LandingPage() {
 
         <section id="merchant" className="py-20 px-6">
           <div className="max-w-6xl mx-auto space-y-24">
-            {services.map((service, index) => (
+            {services.map((service, index) => {
+              const accent = serviceAccentClasses[index % serviceAccentClasses.length];
+
+              return (
               <div key={service.title} className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-12 items-center`}>
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex-1 text-center md:text-left">
                   <h2 className="font-heading text-2xl font-bold text-white mb-2 uppercase">{service.title}</h2>
-                  <h3 className="text-sm text-[#D1FFBD] opacity-80 mb-6 italic">"{service.subtitle}"</h3>
+                  <h3 className={`text-sm opacity-90 mb-6 italic ${accent.subtitle}`}>"{service.subtitle}"</h3>
                   <p className="text-gray-400 text-base leading-relaxed font-light">{service.description}</p>
                 </motion.div>
-                <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className={`flex-1 w-full max-w-sm p-1 rounded-[1.5rem] ${iosGlassCard}`}>
-                  <img src={service.image} alt={service.alt} className="w-full aspect-[4/3] object-cover rounded-[1.4rem] opacity-90 transform-gpu" />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  whileHover={{ y: -12, rotateX: -8, rotateY: index % 2 === 0 ? 10 : -10, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 180, damping: 18 }}
+                  viewport={{ once: true }}
+                  className={`group flex-1 w-full max-w-sm p-1 rounded-[1.5rem] ${iosGlassCard} [transform-style:preserve-3d] [perspective:1200px] shadow-[0_35px_80px_rgba(0,0,0,0.35)]`}
+                >
+                  <div className="relative overflow-hidden rounded-[1.4rem]">
+                    <img src={service.image} alt={service.alt} className="w-full aspect-[4/3] object-cover rounded-[1.4rem] opacity-90 transform-gpu transition-transform duration-500 group-hover:scale-110" />
+                    <div className={`absolute inset-0 ${accent.overlay}`} />
+                    <div className={`absolute inset-x-6 bottom-6 rounded-2xl border px-4 py-3 backdrop-blur-md ${accent.panel}`}>
+                      <p className={`text-[10px] uppercase tracking-[0.35em] ${accent.title}`}>{service.title}</p>
+                      <p className="mt-2 text-sm font-semibold text-white">{service.subtitle}</p>
+                    </div>
+                  </div>
                 </motion.div>
               </div>
-            ))}
+            )})}
           </div>
         </section>
 
@@ -230,7 +367,7 @@ export default function LandingPage() {
                   <select value={form.bestTime} onChange={(e) => setForm({ ...form, bestTime: e.target.value })} className={inputStyle}><option value="">Best time to contact</option><option value="Morning">Morning</option><option value="Afternoon">Afternoon</option><option value="Evening">Evening</option></select>
                 </div>
                 <textarea placeholder="Message..." rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={inputStyle} />
-                <button type="submit" disabled={loading} className={`w-full py-4 rounded-xl font-black tracking-widest text-xs uppercase transition-all ${loading ? 'bg-gray-800' : 'bg-[#D1FFBD] text-black hover:bg-white transform-gpu'}`}>
+                <button type="submit" disabled={loading} className={`w-full py-4 rounded-xl font-black tracking-widest text-xs uppercase transition-all ${loading ? 'bg-gray-800' : 'bg-[#D1FFBD] text-black hover:bg-white shadow-[0_20px_45px_rgba(209,255,189,0.18)] transform-gpu'}`}>
                   {loading ? "SENDING..." : "SUBMIT REQUEST"}
                 </button>
               </form>
