@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <linearGradient id="brandGradient" x1="36" y1="34" x2="186" y2="182" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F1FFE8" />
+      <stop offset="0.45" stop-color="#D1FFBD" />
+      <stop offset="1" stop-color="#39D3AE" />
+    </linearGradient>
+    <filter id="brandGlow" x="0" y="0" width="220" height="220" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.22 0" />
+    </filter>
+  </defs>
+  <g filter="url(#brandGlow)" opacity="0.85">
+    <path d="M56 128V48" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M56 48L42 70" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M56 48L70 70" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="96" cy="128" r="40" stroke="url(#brandGradient)" stroke-width="16" />
+    <path d="M136 128V178" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" />
+    <circle cx="176" cy="128" r="40" stroke="url(#brandGradient)" stroke-width="16" />
+    <path d="M162 94L198 72" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M198 72L176 72" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M198 72L184 90" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <g>
+    <path d="M56 128V48" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M56 48L42 70" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M56 48L70 70" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="96" cy="128" r="40" stroke="url(#brandGradient)" stroke-width="16" />
+    <path d="M136 128V178" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" />
+    <circle cx="176" cy="128" r="40" stroke="url(#brandGradient)" stroke-width="16" />
+    <path d="M162 94L198 72" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M198 72L176 72" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M198 72L184 90" stroke="url(#brandGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

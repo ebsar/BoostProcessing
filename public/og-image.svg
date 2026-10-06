@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="brandGradient" x1="112" y1="106" x2="352" y2="346" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F1FFE8" />
+      <stop offset="0.45" stop-color="#D1FFBD" />
+      <stop offset="1" stop-color="#39D3AE" />
+    </linearGradient>
+    <radialGradient id="heroGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 132) rotate(136) scale(412 310)">
+      <stop stop-color="#D1FFBD" stop-opacity="0.2" />
+      <stop offset="1" stop-color="#D1FFBD" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="heroGlowTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 520) rotate(-18) scale(380 260)">
+      <stop stop-color="#39D3AE" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#39D3AE" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050505" />
+  <rect width="1200" height="630" fill="url(#heroGlow)" />
+  <rect width="1200" height="630" fill="url(#heroGlowTwo)" />
+  <rect x="68" y="68" width="1064" height="494" rx="36" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" />
+  <g transform="translate(118 156)">
+    <path d="M92 208V76" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M92 76L70 110" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M92 76L114 110" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="158" cy="208" r="66" stroke="url(#brandGradient)" stroke-width="24" />
+    <path d="M224 208V292" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" />
+    <circle cx="290" cy="208" r="66" stroke="url(#brandGradient)" stroke-width="24" />
+    <path d="M266 152L324 116" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M324 116L288 116" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M324 116L302 144" stroke="url(#brandGradient)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <text x="520" y="254" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="800" letter-spacing="10">
+    BOOST
+  </text>
+  <text x="520" y="314" fill="#D1FFBD" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="8">
+    SOLUTION PROCESSING LLC
+  </text>
+  <text x="520" y="388" fill="#D7D7D7" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">
+    Easy and smart merchant processing solutions for modern businesses.
+  </text>
+  <text x="520" y="444" fill="#8F8F8F" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" letter-spacing="3.5">
+    POS SYSTEMS  •  TERMINAL EQUIPMENT  •  MERCHANT PROCESSING
+  </text>
+</svg>

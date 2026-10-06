@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Boost Solution Processing LLC</title>
+  <meta
+    name="description"
+    content="Read the Privacy Policy for Boost Solution Processing LLC, including how we collect, use, protect, and handle personal information submitted through our website and chat widget."
+  >
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://www.boostprocessing.com/privacy-policy.html">
+  <link rel="icon" type="image/svg+xml" href="/brand-mark.svg">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-border: rgba(255, 255, 255, 0.09);
+      --text: #f5f5f5;
+      --muted: #b6b6b6;
+      --accent: #d1ffbd;
+      --accent-soft: rgba(209, 255, 189, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(209, 255, 189, 0.12), transparent 32%),
+        linear-gradient(180deg, #050505 0%, #090909 48%, #050505 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 72px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .hero,
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    .hero {
+      padding: 42px 26px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -80px -40px;
+      width: 240px;
+      height: 240px;
+      background: rgba(209, 255, 189, 0.12);
+      filter: blur(80px);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      margin: 18px 0 0;
+      font-size: 1rem;
+    }
+
+    .meta {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card {
+      padding: 28px 24px;
+    }
+
+    section + section {
+      margin-top: 28px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .quote {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--accent);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #e7e7e7;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .mini {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+    }
+
+    .mini h3 {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text);
+    }
+
+    .mini p {
+      margin: 0;
+    }
+
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 255, 189, 0.28);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      color: #8f8f8f;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 20px, 960px);
+      }
+
+      .hero,
+      .card {
+        border-radius: 22px;
+      }
+
+      .hero,
+      .card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <a href="/">Back to Home</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+    </div>
+
+    <header class="hero">
+      <span class="eyebrow">Boost Solution Processing LLC</span>
+      <h1>Privacy Policy</h1>
+      <p>
+        This Privacy Policy explains how Boost Solution Processing LLC collects, uses, stores,
+        and protects information submitted through our website, contact forms, and website chat widget.
+      </p>
+      <div class="meta">Last updated March 28, 2026</div>
+    </header>
+
+    <main class="card">
+      <section>
+        <h2>1. Scope</h2>
+        <p>
+          This Privacy Policy applies to visitors of <a href="https://www.boostprocessing.com/">boostprocessing.com</a>
+          and to communications with Boost Solution Processing LLC regarding merchant processing,
+          payment technology, terminal equipment, point-of-sale systems, customer support, and related services.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Information We Collect</h2>
+        <div class="grid">
+          <div class="mini">
+            <h3>Information You Provide</h3>
+            <p>
+              Depending on how you contact us, we may collect your name, email address, phone number,
+              business name, processing volume, preferred contact time, and message details.
+            </p>
+          </div>
+          <div class="mini">
+            <h3>Technical Information</h3>
+            <p>
+              We may collect browser, device, IP address, referral source, and basic usage information to help
+              operate, secure, and improve the website.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. How We Use Information</h2>
+        <ul>
+          <li>To respond to inquiries and provide requested information about our services.</li>
+          <li>To schedule follow-up conversations, consultations, demos, or support interactions.</li>
+          <li>To operate, monitor, secure, and improve our website and communications.</li>
+          <li>To maintain business records and comply with legal, regulatory, or contractual obligations.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Website Forms, Chat Widget, and SMS</h2>
+        <p>
+          Our website may offer a standard contact form and a website chat widget. Information submitted through these
+          tools is used to communicate with you about your request and our services.
+        </p>
+        <p>
+          If you choose to opt in to text messaging through our website chat widget or another approved method,
+          message frequency may vary. Message and data rates may apply. Reply <strong>STOP</strong> to opt out of SMS
+          messages and <strong>HELP</strong> for assistance. SMS consent is not a condition of purchase.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Sharing of Information</h2>
+        <p>
+          We may share information with service providers that help us operate our website, communications,
+          customer support, hosting, and related business systems. We do not use mobile opt-in data for unrelated
+          third-party marketing.
+        </p>
+        <div class="quote">
+          No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.
+          Information sharing to subcontractors in support services, such as customer service, is permitted.
+          All other use case categories exclude text messaging originator opt-in data and consent; this information
+          will not be shared with any third parties.
+        </div>
+      </section>
+
+      <section>
+        <h2>6. Cookies and Website Analytics</h2>
+        <p>
+          We may use cookies or similar technologies to support site performance, security, and basic analytics.
+          You can manage cookies through your browser settings, though some site features may not work properly if
+          cookies are disabled.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Data Retention and Security</h2>
+        <p>
+          We retain information only for as long as reasonably necessary for legitimate business purposes,
+          customer support, legal compliance, dispute resolution, and recordkeeping. We use reasonable administrative,
+          technical, and organizational safeguards to help protect personal information.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Your Choices</h2>
+        <ul>
+          <li>You may request to update or correct your information.</li>
+          <li>You may ask us to stop marketing communications at any time.</li>
+          <li>You may opt out of text messages at any time by replying STOP.</li>
+          <li>You may contact us to request information about data access or deletion, subject to applicable law.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>9. Contact Us</h2>
+        <p>
+          If you have questions about this Privacy Policy or our data handling practices, contact:
+        </p>
+        <p>
+          <strong>Boost Solution Processing LLC</strong><br>
+          Email: <a href="mailto:questionboost@gmail.com">questionboost@gmail.com</a><br>
+          Email: <a href="mailto:bejtullah@boostatm.com">bejtullah@boostatm.com</a
+          Address: 1150NW 72ND AVE TOWER 1 STE 455 Miami, FL 33126
+        </p>
+      </section>
+
+      <div class="legal-links">
+        <a class="pill" href="/">Home</a>
+        <a class="pill" href="/terms-of-service.html">Terms of Service</a>
+      </div>
+    </main>
+
+    <footer>
+      Copyright 2026 Boost Solution Processing LLC. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
