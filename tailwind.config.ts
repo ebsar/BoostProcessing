@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
+<<<<<<< HEAD
 import animate from "tailwindcss-animate";
+=======
+>>>>>>> 953a9aac626f00faed664d54c596d2633d0fb46d
 
 export default {
   darkMode: ["class"],
@@ -15,8 +18,13 @@ export default {
     },
     extend: {
       fontFamily: {
+<<<<<<< HEAD
         heading: ["Outfit", "sans-serif"],
         body: ["Work Sans", "sans-serif"],
+=======
+        heading: ["Montserrat", "sans-serif"],
+        body: ["Open Sans", "sans-serif"],
+>>>>>>> 953a9aac626f00faed664d54c596d2633d0fb46d
       },
       colors: {
         border: "hsl(var(--border))",
@@ -89,5 +97,9 @@ export default {
       },
     },
   },
+<<<<<<< HEAD
   plugins: [animate],
+=======
+  plugins: [require("tailwindcss-animate")],
+>>>>>>> 953a9aac626f00faed664d54c596d2633d0fb46d
 } satisfies Config;
