@@ -15,10 +15,17 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Outfit", "sans-serif"],
-        body: ["Work Sans", "sans-serif"],
+        display: ["\"Plus Jakarta Sans\"", "sans-serif"],
+        body: ["\"Plus Jakarta Sans\"", "sans-serif"],
+        heading: ["\"Plus Jakarta Sans\"", "sans-serif"],
       },
       colors: {
+        ink: "#0A1C47",
+        teal: "#0B7564",
+        mint: "#39D3AE",
+        "mint-light": "#D1FFBD",
+        slate: "#5B6B85",
+        cloud: "#F4FAF7",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -81,11 +88,21 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "pin-drop": {
+          "0%": { transform: "translateY(-6px) scale(0.9)", opacity: "0" },
+          "60%": { transform: "translateY(1px) scale(1.05)", opacity: "1" },
+          "100%": { transform: "translateY(0) scale(1)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
+        "pin-drop": "pin-drop 0.4s cubic-bezier(.34,1.56,.64,1)",
+      },
+      boxShadow: {
+        soft: "0 1px 2px rgba(10,28,71,.04), 0 16px 32px -16px rgba(10,28,71,.16)",
+        "soft-lg": "0 2px 4px rgba(10,28,71,.05), 0 30px 54px -18px rgba(10,28,71,.22)",
       },
     },
   },
